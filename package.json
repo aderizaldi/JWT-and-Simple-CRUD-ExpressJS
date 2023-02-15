@@ -3,11 +3,22 @@
   "version": "1.0.0",
   "description": "Simple CRUD ExpressJS and implement JWT",
   "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:aderizaldi/JWT-and-Simple-CRUD-ExpressJS.git"
+  },
   "author": "Ade Rizaldi",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "node index.js"
   },
+  "bugs": {
+    "url": "https://github.com/aderizaldi/JWT-and-Simple-CRUD-ExpressJS/issues"
+  },
+  "homepage": "https://github.com/aderizaldi/JWT-and-Simple-CRUD-ExpressJS#readme",
   "dependencies": {
     "argon2": "^0.30.3",
     "cors": "^2.8.5",

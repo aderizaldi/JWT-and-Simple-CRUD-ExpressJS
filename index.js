@@ -9,6 +9,15 @@ app.use(express.json()) //app/json parse
 app.use(express.urlencoded({ extended: true })) //urlencoded parse
 app.use(cors()) //cors
 
+//test server
+app.get('/', async (req, res) => {
+    res.json({
+        status : 'Success',
+        message : 'Welcome!',
+        documentation : 'https://documenter.getpostman.com/view/19571378/2s93CEvbc5'
+    })
+})
+
 // routes
 const routes = require('./app/routes')
 app.use('/', routes)
@@ -31,3 +40,5 @@ db.once('open', () => {
 app.listen(process.env.PORT,() => {
     console.log(`Server is running on ${process.env.PORT}`)
 })
+
+module.exports = app

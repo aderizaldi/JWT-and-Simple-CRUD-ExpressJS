@@ -8,7 +8,7 @@ const verify_access_token = error_handler(async (req, res, next) => {
 
     if (!token) {
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Unauthorized!',
         })
     }
@@ -19,7 +19,7 @@ const verify_access_token = error_handler(async (req, res, next) => {
         next();
     } catch (err) {
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Unauthorized!',
         })
     }

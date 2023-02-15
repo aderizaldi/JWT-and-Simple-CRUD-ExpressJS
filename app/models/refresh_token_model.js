@@ -7,9 +7,9 @@ const refresh_token_schema = mongoose.Schema(
         updatedAt : Number,
     },
     {
-        collection:'RefreshToken',
+        collection:'refresh_token',
         timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
     }
 )
 
-module.exports = mongoose.model('RefreshToken', refresh_token_schema);
+module.exports = mongoose.model('refresh_token', refresh_token_schema);

@@ -1,6 +1,6 @@
-const {error_handler} = require("../utils");
+const {error_handler} = require("../../utils");
 const Validator = require("validatorjs")
-const models = require("../models")
+const models = require("../../models")
 
 Validator.useLang('id')
 
@@ -19,7 +19,7 @@ Validator.registerAsync('email_available', function(email, attribute, req, passe
 
 const validate_signup = error_handler(async (req, res, next) => {
     let rules = {
-        nama: 'required|max:256',
+        name: 'required|max:256',
         email: 'required|email|email_available',
         password: 'min:4'
     }
@@ -30,7 +30,7 @@ const validate_signup = error_handler(async (req, res, next) => {
         next()
     }, () => {
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Proses validasi gagal!!',
             errors : validator.errors.all(),
         })
@@ -46,7 +46,7 @@ const validate_login =  error_handler(async (req, res, next) => {
     let validator = new Validator(req.body, rules)
     if(validator.fails()){
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Proses validasi gagal!!',
             errors : validator.errors.all(),
         })

@@ -5,12 +5,12 @@ const me = error_handler(async (req, res) => {
     const admin_doc = await models.Admin.findById(req.admin_id).exec();
     if (!admin_doc) {
         return res.status(400).json({
-            status : false,
+            status : 'Error',
             message : 'User tidak ditemukan!'
         })
     }
     return res.status(200).json({
-            status : true,
+            status : 'Success',
             message : 'Berhasil mendapatkan info user!',
             data : admin_doc
         })
