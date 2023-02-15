@@ -38,6 +38,10 @@ Selanjutnya API sudah dapat digunakan. :))
 
 ---
 
-## Dokumentasi
+## Link
 
 Dokumentasi postman : [https://documenter.getpostman.com/view/19571378/2s93CEvbc5](https://documenter.getpostman.com/view/19571378/2s93CEvbc5)
+
+Deployment:
+
+[https://jwt-and-crud.up.railway.app/](https://jwt-and-crud.up.railway.app/)
