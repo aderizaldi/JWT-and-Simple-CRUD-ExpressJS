@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
 
 // routes
 const routes = require('./app/routes')
-app.use('/api', routes)
+app.use('/', routes)
 
 // connect to db
 mongoose.set('strictQuery', false)
