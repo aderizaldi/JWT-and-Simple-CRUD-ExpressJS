@@ -16,7 +16,7 @@ const course_schema = new mongoose.Schema(
         updatedAt : Number,
     },
     {
-        collection:'courses',
+        collection:'user_courses',
         timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
     }
 )

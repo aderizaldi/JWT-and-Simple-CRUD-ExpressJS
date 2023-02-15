@@ -31,7 +31,7 @@ const get_course_by_id = error_handler(async (req, res) => {
     if(!data){
         return res.status(400).json({
             status : 'Error',
-            message : 'course tidak ditemukan!',
+            message : 'Course tidak ditemukan!',
         })
     }
     return res.status(200).json({
@@ -46,7 +46,7 @@ const edit_course = error_handler(async (req, res) => {
     if(!old_data){
         return res.status(400).json({
             status : "Errors",
-            message : 'course tidak ditemukan!',
+            message : 'Course tidak ditemukan!',
         })
     }
     await models.Course.Courses.updateOne({_id: req.params.course_id},
@@ -65,7 +65,7 @@ const delete_course = error_handler(async(req, res) => {
     if(!data){
         return res.status(400).json({
             status : "Errors",
-            message : 'course tidak ditemukan!',
+            message : 'Course tidak ditemukan!',
         })
     }
     return res.status(200).json({

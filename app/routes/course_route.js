@@ -24,4 +24,11 @@ router.get('/course/:course_id', middlewares.jwt.verify_access_token, controller
 router.put('/course/:course_id', middlewares.jwt.verify_access_token, controllers.course.course.edit_course)
 router.delete('/course/:course_id', middlewares.jwt.verify_access_token, controllers.course.course.delete_course)
 
+//course
+router.post('/user_course', middlewares.jwt.verify_access_token, controllers.course.user_course.create_user_course)
+router.get('/user_courses', middlewares.jwt.verify_access_token, controllers.course.user_course.get_all_user_courses)
+router.get('/user_course/:user_course_id', middlewares.jwt.verify_access_token, controllers.course.user_course.get_user_course_by_id)
+router.put('/user_course/:user_course_id', middlewares.jwt.verify_access_token, controllers.course.user_course.edit_user_course)
+router.delete('/user_course/:user_course_id', middlewares.jwt.verify_access_token, controllers.course.user_course.delete_user_course)
+
 module.exports = router

@@ -30,7 +30,7 @@ const get_course_category_by_id = error_handler(async (req, res) => {
     if(!data){
         return res.status(400).json({
             status : 'Error',
-            message : 'course category tidak ditemukan!',
+            message : 'Course category tidak ditemukan!',
         })
     }
     return res.status(200).json({
@@ -45,7 +45,7 @@ const edit_course_category = error_handler(async (req, res) => {
     if(!old_data){
         return res.status(400).json({
             status : "Errors",
-            message : 'course category tidak ditemukan!',
+            message : 'Course category tidak ditemukan!',
         })
     }
     await models.Course.CourseCategories.updateOne({_id: req.params.course_category_id},
@@ -63,7 +63,7 @@ const delete_course_category = error_handler(async(req, res) => {
     if(!data){
         return res.status(400).json({
             status : "Errors",
-            message : 'course category tidak ditemukan!',
+            message : 'Course category tidak ditemukan!',
         })
     }
     return res.status(200).json({
