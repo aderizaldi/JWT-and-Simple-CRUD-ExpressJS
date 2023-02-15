@@ -6,7 +6,7 @@
   "author": "Ade Rizaldi",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "argon2": "^0.30.3",
