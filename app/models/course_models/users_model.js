@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const admin_schema = new mongoose.Schema(
+const user_schema = new mongoose.Schema(
     {
         name: {
             type : String,
@@ -21,9 +21,9 @@ const admin_schema = new mongoose.Schema(
         updatedAt : Number,
     },
     {
-        collection:'admin',
+        collection:'users',
         timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
     }
 )
 
-module.exports = mongoose.model('admin', admin_schema);
+module.exports = mongoose.model('users', user_schema);

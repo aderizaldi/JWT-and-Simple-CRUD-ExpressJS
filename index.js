@@ -31,3 +31,5 @@ db.once('open', () => {
 app.listen(process.env.PORT,() => {
     console.log(`Server is running on ${process.env.PORT}`)
 })
+
+module.exports = app

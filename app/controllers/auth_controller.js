@@ -7,7 +7,7 @@ const {error_handler, with_transaction} = require("../utils")
 const signup = error_handler(with_transaction(async (req, res, session) => {
     try {
         const admin_doc = models.Admin({
-            nama: req.body.nama,
+            name: req.body.name,
             email: req.body.email,
             password: await argon2.hash(req.body.password)
         })
@@ -22,7 +22,7 @@ const signup = error_handler(with_transaction(async (req, res, session) => {
         const access_token = create_access_token(admin_doc.id)
     
         return res.status(200).json({
-            status : true,
+            status : 'Success',
             message : 'Berhasil membuat akun!',
             data : {
                 id: admin_doc.id,
@@ -33,7 +33,7 @@ const signup = error_handler(with_transaction(async (req, res, session) => {
     }
     catch(err){
         return res.status(400).json({
-            status : false,
+            status : 'Error',
             message : 'Gagal membuat akun!',
             error : err
         })
@@ -48,7 +48,7 @@ const login = error_handler(with_transaction(async (req, res, session) => {
             .exec()       
         if (!admin_doc) {
             return res.status(401).json({
-                status : false,
+                status : 'Error',
                 message : 'Email anda tidak terdaftar!',
             })
         }
@@ -56,7 +56,7 @@ const login = error_handler(with_transaction(async (req, res, session) => {
         const is_verif = await verify_password(admin_doc.password, req.body.password)
         if (!is_verif) {
             return res.status(401).json({
-                status : false,
+                status : 'Error',
                 message : 'Password yang dimasukkan salah!',
             })
         }
@@ -72,7 +72,7 @@ const login = error_handler(with_transaction(async (req, res, session) => {
 
 
         return res.status(200).json({
-            status : true,
+            status : 'Success',
             message : 'Login berhasil!',
             data : {
                 id: admin_doc.id,
@@ -82,7 +82,7 @@ const login = error_handler(with_transaction(async (req, res, session) => {
         })
     }catch(err){
         return res.status(400).json({
-            status : false,
+            status : 'Error',
             message : 'Gagal Login',
             error : err
         })
@@ -93,7 +93,7 @@ const new_refresh_token = error_handler(with_transaction(async (req, res, sessio
     const current_refresh_token = await validate_refresh_token(req.body.refresh_token)
     if(!current_refresh_token){
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Unauthorized!',
         })
     }
@@ -108,7 +108,7 @@ const new_refresh_token = error_handler(with_transaction(async (req, res, sessio
     const access_token = create_access_token(current_refresh_token.admin_id)
 
     return res.status(200).json({
-        status : true,
+        status : 'Success',
         message : 'Berhasil membuat refresh token baru!',
         data : {
             id: current_refresh_token.admin_id,
@@ -124,13 +124,13 @@ const new_access_token = error_handler(async (req, res) => {
 
     if(!refresh_token){
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Unauthorized!',
         })
     }
 
     return res.status(200).json({
-        status : true,
+        status : 'Success',
         message : 'Berhasil membuat access token baru!',
         data : {
             id: refresh_token.admin_id,
@@ -144,13 +144,13 @@ const logout = error_handler(with_transaction(async (req, res, session) => {
     const refresh_token = await validate_refresh_token(req.body.refresh_token)
     if(!refresh_token){
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Unauthorized!',
         })
     }
     await models.RefreshToken.deleteOne({_id: refresh_token.token_id}, {session})
     return res.status(200).json({
-        status : true,
+        status : 'Success',
         message : 'Berhasil logout!',
      })
 }))
@@ -159,13 +159,13 @@ const logout_all = error_handler(with_transaction(async (req, res, session) => {
     const refresh_token = await validate_refresh_token(req.body.refresh_token)
     if(!refresh_token){
         return res.status(401).json({
-            status : false,
+            status : 'Error',
             message : 'Unauthorized!',
         })
     }
     await models.RefreshToken.deleteMany({owner: refresh_token.admin_id}, {session})
     return res.status(200).json({
-        status : true,
+        status : 'Success',
         message : 'Berhasil logout!',
      })
 }))
@@ -175,7 +175,7 @@ function create_access_token(admin_id) {
     return jwt.sign({
         admin_id: admin_id
     }, process.env.ACCESS_TOKEN_SECRET, {
-       expiresIn: '10m'
+       expiresIn: '1h'
     })
 }
 
